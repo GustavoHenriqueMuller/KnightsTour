@@ -7,7 +7,6 @@
 namespace Weighted {
     Board solve(Board board, const Position& initialPosition) {
         Board weightBoard = buildWeightBoard(BOARD_WIDTH, BOARD_HEIGHT);
-        weightBoard.print();
 
         doMovement(board, weightBoard, initialPosition);
         return board;
@@ -28,7 +27,7 @@ namespace Weighted {
         return weightBoard;
     }
 
-    void doMovement(Board& board, Board& weightBoard, const Position& currentPosition) {
+    void doMovement(Board& board, const Board& weightBoard, const Position& currentPosition) {
         board.moveTo(currentPosition);
 
         std::vector<Position> movements = getMovements(board, weightBoard, currentPosition);
@@ -44,7 +43,7 @@ namespace Weighted {
         }
     }
 
-    std::vector<Position> getMovements(Board& board, Board& weightBoard, const Position& position) {
+    std::vector<Position> getMovements(Board& board, const Board& weightBoard, const Position& position) {
         std::vector<Position> movements;
 
         // Add vertical movements.
@@ -69,7 +68,7 @@ namespace Weighted {
         }
 
         // Order positions by lesser weight.
-        std::sort(possibleMovements.begin(), possibleMovements.end(), [&](const Position& lhs, const Position& rhs) {
+        std::sort(possibleMovements.begin(), possibleMovements.end(), [&weightBoard](const Position& lhs, const Position& rhs) {
            return weightBoard.at(lhs) < weightBoard.at(rhs);
         });
 

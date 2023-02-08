@@ -1,51 +1,39 @@
 #include "board.h"
-#include "bruteforce.h"
-#include "weighted.h"
+#include "test.h"
 
 #include <iostream>
 #include <chrono>
 
-using TimePoint = std::chrono::steady_clock::time_point;
-
-void printBruteForceAndWeightedTimes(const Board& board) {
-    Board bruteforceTimes;
-    Board weightedTimes;
-
-    for (int i = 0; i < BOARD_HEIGHT; i++) {
-        for (int j = 0; j < BOARD_WIDTH; j++) {
-            TimePoint begin, end;
-
-            // Bruteforce algorithm.
-            begin = std::chrono::steady_clock::now();
-            Bruteforce::solve(board, Position(i, j));
-            end = std::chrono::steady_clock::now();
-
-            int bruteforceMilliseconds = std::chrono::duration_cast<std::chrono::milliseconds>(end - begin).count();
-            bruteforceTimes.set(Position(i, j), bruteforceMilliseconds);
-
-            // Weighted algorithm.
-            begin = std::chrono::steady_clock::now();
-            Weighted::solve(board, Position(i, j));
-            end = std::chrono::steady_clock::now();
-
-            int weightedMilliseconds = std::chrono::duration_cast<std::chrono::milliseconds>(end - begin).count();
-            weightedTimes.set(Position(i, j), weightedMilliseconds);
-        }
-    }
-
-    bruteforceTimes.print();
-    weightedTimes.print();
-}
-
 int main() {
     // Initialize board, print board and board size/dimensions.
-    Board board = Board();
+    std::cout << "Board size: " << BOARD_WIDTH << "x" << BOARD_HEIGHT << " = " << BOARD_SIZE << std::endl << std::endl;
 
-    std::cout << "Board size: " << BOARD_WIDTH << "x" << BOARD_HEIGHT << " = " << BOARD_SIZE << std::endl;
-    board.print();
+    // Execute brute force and weighted algorithms and calculate elapsed time.
+    TimePoint bruteforceStart, bruteforceEnd;
+    TimePoint weightedStart, weightedEnd;
 
-    // Execute brute force solution and calculate elapsed time.
-    printBruteForceAndWeightedTimes(board);
+    bruteforceStart = std::chrono::steady_clock::now();
+    Board bruteforceTimes = Test::getBruteforceTimes();
+    bruteforceEnd = std::chrono::steady_clock::now();
+
+    weightedStart = std::chrono::steady_clock::now();
+    Board weightedTimes = Test::getWeightedTimes();
+    weightedEnd = std::chrono::steady_clock::now();
+
+    std::cout << std::endl;
+
+    int bruteforceTotalTime = Test::getSeconds(bruteforceStart, bruteforceEnd);
+    int weightedTotalTime = Test::getSeconds(weightedStart, weightedEnd);
+
+    // Print bruteforce times.
+    std::cout << "Bruteforce times [s]:" << std::endl;
+    bruteforceTimes.print();
+    std::cout << std::endl << "Total bruteforce time [s]: " << bruteforceTotalTime << std::endl << std::endl;
+
+    // Print weighted times.
+    std::cout << "Weighted times [ms]:" << std::endl;
+    weightedTimes.print();
+    std::cout << std::endl << "Total weighted time [s]: " << weightedTotalTime << std::endl << std::endl;
 
     return 0;
 }

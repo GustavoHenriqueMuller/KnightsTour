@@ -7,11 +7,12 @@ SOURCES += src/main.cpp \
     src/board.cpp \
     src/position.cpp \
     src/bruteforce.cpp \
-    src/weighted.cpp
+    src/weighted.cpp \
+    src/test.cpp
 
 HEADERS += \
     src/board.h \
     src/position.h \
     src/bruteforce.h \
-    src/leastMovements.h \
-    src/weighted.h
+    src/weighted.h \
+    src/test.h

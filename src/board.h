@@ -24,14 +24,14 @@ private:
 public:
     Board();
 
-    int at(const Position& position);
-    bool isVisited(const Position& position);
+    int at(const Position& position) const;
+    bool isVisited(const Position& position) const;
     void moveTo(const Position& position);
     void set(const Position& position, int value);
-    bool isValidPosition(const Position& position);
-    bool isSolved();
-    int getOccupiedPositionsAmount();
-    void print();
+    bool isValidPosition(const Position& position) const;
+    bool isSolved() const;
+    int getOccupiedPositionsAmount() const;
+    void print() const;
 };
 
 #endif // BOARD_H

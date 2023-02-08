@@ -10,11 +10,11 @@ Board::Board() {
     }
 }
 
-int Board::at(const Position& position) {
+int Board::at(const Position& position) const {
     return this->data[position.i][position.j];
 }
 
-bool Board::isVisited(const Position& position) {
+bool Board::isVisited(const Position& position) const {
     return this->at(position) != 0;
 }
 
@@ -34,7 +34,7 @@ void Board::set(const Position& position, int value) {
     this->data[position.i][position.j] = value;
 }
 
-bool Board::isValidPosition(const Position& position) {
+bool Board::isValidPosition(const Position& position) const {
     bool isOutOfBounds = (position.i < 0 || position.i >= BOARD_HEIGHT) || (position.j < 0 || position.j >= BOARD_WIDTH);
 
     if (isOutOfBounds) {
@@ -44,15 +44,15 @@ bool Board::isValidPosition(const Position& position) {
     return !this->isVisited(position);
 }
 
-bool Board::isSolved() {
+bool Board::isSolved() const {
     return this->occupiedPositionsAmount == BOARD_SIZE;
 }
 
-int Board::getOccupiedPositionsAmount() {
+int Board::getOccupiedPositionsAmount() const {
     return this->occupiedPositionsAmount;
 }
 
-void Board::print() {
+void Board::print() const {
     for (int i = 0 ; i < BOARD_HEIGHT; i++) {
         std::cout << "[";
 
