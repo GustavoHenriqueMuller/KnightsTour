@@ -1,20 +1,40 @@
-#include "bruteforce.h"
+#include "weighted.h"
 
 #include <algorithm>
+#include <map>
+#include <iostream>
 
-namespace Bruteforce {
+namespace Weighted {
     Board solve(Board board, const Position& initialPosition) {
-        doMovement(board, initialPosition);
+        Board weightBoard = buildWeightBoard(BOARD_WIDTH, BOARD_HEIGHT);
+        weightBoard.print();
+
+        doMovement(board, weightBoard, initialPosition);
         return board;
     }
 
-    void doMovement(Board& board, const Position& currentPosition) {
+    Board buildWeightBoard(int width, int height) {
+        Board weightBoard;
+
+        for (int i = 0; i < height; i++) {
+            for (int j = 0; j < width; j++) {
+                int i1 = std::min(i, height - i - 1);
+                int j1 = std::min(j, width - j - 1);
+
+                weightBoard.set(Position(i, j), std::min(i1, j1));
+            }
+        }
+
+        return weightBoard;
+    }
+
+    void doMovement(Board& board, Board& weightBoard, const Position& currentPosition) {
         board.moveTo(currentPosition);
 
-        std::vector<Position> movements = getMovements(board, currentPosition);
+        std::vector<Position> movements = getMovements(board, weightBoard, currentPosition);
 
         for (Position movementPosition : movements) {
-            doMovement(board, movementPosition);
+            doMovement(board, weightBoard, movementPosition);
 
             if (board.isSolved()) {
                 return;
@@ -24,7 +44,7 @@ namespace Bruteforce {
         }
     }
 
-    std::vector<Position> getMovements(Board& board, const Position& position) {
+    std::vector<Position> getMovements(Board& board, Board& weightBoard, const Position& position) {
         std::vector<Position> movements;
 
         // Add vertical movements.
@@ -47,6 +67,11 @@ namespace Bruteforce {
                 possibleMovements.push_back(movement);
             }
         }
+
+        // Order positions by lesser weight.
+        std::sort(possibleMovements.begin(), possibleMovements.end(), [&](const Position& lhs, const Position& rhs) {
+           return weightBoard.at(lhs) < weightBoard.at(rhs);
+        });
 
         return possibleMovements;
     }

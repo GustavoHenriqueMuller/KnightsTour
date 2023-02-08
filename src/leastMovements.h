@@ -1,15 +1,14 @@
-#ifndef BRUTEFORCE_H
-#define BRUTEFORCE_H
+#ifndef LEASTMOVEMENTS_H
+#define LEASTMOVEMENTS_H
 
 #include "board.h"
-#include "position.h"
 
 #include <vector>
 
-namespace Bruteforce {
+namespace Weighted {
     Board solve(Board board, const Position& initialPosition);
     void doMovement(Board& board, const Position& currentPosition);
     std::vector<Position> getMovements(Board& board, const Position& position);
 }
 
-#endif // BRUTEFORCE_H
+#endif // LEASTMOVEMENTS_H

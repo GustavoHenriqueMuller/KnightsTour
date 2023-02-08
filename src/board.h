@@ -24,9 +24,10 @@ private:
 public:
     Board();
 
-    int at(Position position);
-    bool isVisited(Position position);
-    void set(Position position, int value);
+    int at(const Position& position);
+    bool isVisited(const Position& position);
+    void moveTo(const Position& position);
+    void set(const Position& position, int value);
     bool isValidPosition(const Position& position);
     bool isSolved();
     int getOccupiedPositionsAmount();

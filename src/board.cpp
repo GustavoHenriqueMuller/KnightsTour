@@ -10,15 +10,19 @@ Board::Board() {
     }
 }
 
-int Board::at(Position position) {
+int Board::at(const Position& position) {
     return this->data[position.i][position.j];
 }
 
-bool Board::isVisited(Position position) {
+bool Board::isVisited(const Position& position) {
     return this->at(position) != 0;
 }
 
-void Board::set(Position position, int value) {
+void Board::moveTo(const Position& position) {
+    this->set(position, this->getOccupiedPositionsAmount() + 1);
+}
+
+void Board::set(const Position& position, int value) {
     int oldValue = this->data[position.i][position.j];
 
     if (value == 0 && oldValue != 0) {
