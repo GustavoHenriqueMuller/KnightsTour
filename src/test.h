@@ -5,8 +5,8 @@
 
 #include <chrono>
 
-#define TEST_BOARD_WIDTH 2
-#define TEST_BOARD_HEIGHT 2
+#define TEST_BOARD_WIDTH BOARD_WIDTH
+#define TEST_BOARD_HEIGHT BOARD_HEIGHT
 
 using TimePoint = std::chrono::steady_clock::time_point;
 
