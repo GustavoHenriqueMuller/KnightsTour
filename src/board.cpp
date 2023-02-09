@@ -3,8 +3,8 @@
 #include <iostream>
 
 Board::Board() {
-    for (int i = 0; i < BOARD_SIZE; i++) {
-        for (int j = 0; j < BOARD_SIZE; j++) {
+    for (int i = 0; i < BOARD_ROWS; i++) {
+        for (int j = 0; j < BOARD_COLUMNS; j++) {
             this->data[i][j] = 0;
         }
     }
@@ -35,9 +35,9 @@ void Board::set(const Position& position, int value) {
 }
 
 bool Board::isValidPosition(const Position& position) const {
-    bool isOutOfBounds = (position.i < 0 || position.i >= BOARD_HEIGHT) || (position.j < 0 || position.j >= BOARD_WIDTH);
+    bool isInBounds = (position.i >= 0 && position.i < BOARD_ROWS) && (position.j >= 0 && position.j < BOARD_COLUMNS);
 
-    if (isOutOfBounds) {
+    if (!isInBounds) {
         return false;
     }
 
@@ -53,10 +53,10 @@ int Board::getOccupiedPositionsAmount() const {
 }
 
 void Board::print() const {
-    for (int i = 0 ; i < BOARD_HEIGHT; i++) {
+    for (int i = 0 ; i < BOARD_ROWS; i++) {
         std::cout << "[";
 
-        for (int j = 0 ; j < BOARD_WIDTH; j++) {
+        for (int j = 0 ; j < BOARD_COLUMNS; j++) {
             int value = this->data[i][j];
 
             if (value < 10) {
@@ -65,7 +65,7 @@ void Board::print() const {
 
             std::cout << this->data[i][j];
 
-            if (j < BOARD_WIDTH - 1) {
+            if (j < BOARD_COLUMNS - 1) {
                 std::cout << ", ";
             }
         }

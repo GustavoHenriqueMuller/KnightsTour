@@ -6,7 +6,7 @@
 
 namespace Weighted {
     Board solve(Board board, const Position& initialPosition) {
-        Board weightBoard = buildWeightBoard(BOARD_WIDTH, BOARD_HEIGHT);
+        Board weightBoard = buildWeightBoard(BOARD_ROWS, BOARD_ROWS);
 
         doMovement(board, weightBoard, initialPosition);
         return board;

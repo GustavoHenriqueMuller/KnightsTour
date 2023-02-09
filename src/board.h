@@ -12,13 +12,13 @@
  * and 5 by 6 (three solutions, one asymmetric found by Euler 1759, and two symmetric found by others later).
 */
 
-const int BOARD_WIDTH = 8;
-const int BOARD_HEIGHT = 8;
-const int BOARD_SIZE = BOARD_WIDTH * BOARD_HEIGHT;
+const int BOARD_ROWS = 5;
+const int BOARD_COLUMNS = 6;
+const int BOARD_SIZE = BOARD_ROWS * BOARD_COLUMNS;
 
 class Board {
 private:
-    std::array<std::array<int, BOARD_SIZE>, BOARD_SIZE> data;
+    std::array<std::array<int, BOARD_COLUMNS>, BOARD_ROWS> data;
     int occupiedPositionsAmount = 0;
 
 public:

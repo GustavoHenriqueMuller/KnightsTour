@@ -6,7 +6,7 @@
 
 int main() {
     // Initialize board, print board and board size/dimensions.
-    std::cout << "Board size: " << BOARD_WIDTH << "x" << BOARD_HEIGHT << " = " << BOARD_SIZE << std::endl << std::endl;
+    std::cout << "Board size: " << BOARD_ROWS << "x" << BOARD_COLUMNS << " = " << BOARD_SIZE << std::endl << std::endl;
 
     // Execute brute force and weighted algorithms and calculate elapsed time.
     TimePoint bruteforceStart, bruteforceEnd;
@@ -22,18 +22,18 @@ int main() {
 
     std::cout << std::endl;
 
-    int bruteforceTotalTime = Test::getSeconds(bruteforceStart, bruteforceEnd);
-    int weightedTotalTime = Test::getSeconds(weightedStart, weightedEnd);
+    int bruteforceTotalTime = Test::getMilliseconds(bruteforceStart, bruteforceEnd);
+    int weightedTotalTime = Test::getMilliseconds(weightedStart, weightedEnd);
 
     // Print bruteforce times.
-    std::cout << "Bruteforce times [s]:" << std::endl;
+    std::cout << "Bruteforce times [ms]:" << std::endl;
     bruteforceTimes.print();
-    std::cout << std::endl << "Total bruteforce time [s]: " << bruteforceTotalTime << std::endl << std::endl;
+    std::cout << std::endl << "Total bruteforce time [ms]: " << bruteforceTotalTime << std::endl << std::endl;
 
     // Print weighted times.
     std::cout << "Weighted times [ms]:" << std::endl;
     weightedTimes.print();
-    std::cout << std::endl << "Total weighted time [s]: " << weightedTotalTime << std::endl << std::endl;
+    std::cout << std::endl << "Total weighted time [ms]: " << weightedTotalTime << std::endl << std::endl;
 
     return 0;
 }
