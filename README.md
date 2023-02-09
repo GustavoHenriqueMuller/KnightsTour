@@ -31,6 +31,7 @@ As rotações do cavalo são ponderadas iniciando pelas rotações verticais, co
 |**2**|31732|26573|244|722|16581|32244|
 |**3**|14968|8372|22463|19004|9543|12845|
 |**4**|1252|13789|1351|172|14858|2626|
+
 Total bruteforce time [ms]: 255927
 
 ### Weighted
@@ -41,4 +42,5 @@ Total bruteforce time [ms]: 255927
 |**2**|2|12479|64|821|352|21|
 |**3**|1792|0|19505|10590|41|97|
 |**4**|97|350|33|39|707|0|
+
 Total weighted time [ms]: 70743
