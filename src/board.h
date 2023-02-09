@@ -12,8 +12,8 @@
  * and 5 by 6 (three solutions, one asymmetric found by Euler 1759, and two symmetric found by others later).
 */
 
-const int BOARD_ROWS = 5;
-const int BOARD_COLUMNS = 6;
+const int BOARD_ROWS = 8;
+const int BOARD_COLUMNS = 8;
 const int BOARD_SIZE = BOARD_ROWS * BOARD_COLUMNS;
 
 class Board {

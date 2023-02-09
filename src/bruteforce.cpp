@@ -27,15 +27,12 @@ namespace Bruteforce {
     std::vector<Position> getMovements(Board& board, const Position& position) {
         std::vector<Position> movements;
 
-        // Add vertical movements.
         movements.push_back(Position(position.i - 1, position.j + 2));
-        movements.push_back(Position(position.i - 1, position.j - 2));
         movements.push_back(Position(position.i + 1, position.j + 2));
-        movements.push_back(Position(position.i + 1, position.j - 2));
-
-        // Add horizontal movements.
         movements.push_back(Position(position.i - 2, position.j + 1));
         movements.push_back(Position(position.i - 2, position.j - 1));
+        movements.push_back(Position(position.i - 1, position.j - 2));
+        movements.push_back(Position(position.i + 1, position.j - 2));
         movements.push_back(Position(position.i + 2, position.j + 1));
         movements.push_back(Position(position.i + 2, position.j - 1));
 
