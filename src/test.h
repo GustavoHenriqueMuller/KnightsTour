@@ -11,6 +11,9 @@
 using TimePoint = std::chrono::steady_clock::time_point;
 
 namespace Test {
+    void runBruteforce(const Position& position);
+    void runWeighted(const Position& position);
+    void runAllTests();
     Board getBruteforceTimes();
     Board getWeightedTimes();
     int getMilliseconds(const TimePoint& begin, const TimePoint& end);

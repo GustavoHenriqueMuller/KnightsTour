@@ -29,6 +29,7 @@ namespace Weighted {
 
     void doMovement(Board& board, const Board& weightBoard, const Position& currentPosition) {
         board.moveTo(currentPosition);
+        board.print();
 
         std::vector<Position> movements = getMovements(board, weightBoard, currentPosition);
 
